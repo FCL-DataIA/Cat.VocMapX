@@ -1,0 +1,53 @@
+{
+    "@context": "https://w3id.org/codemeta/3.0",
+    "type": "SoftwareSourceCode",
+    "applicationCategory": "Technology for biodiversity",
+    "author": [
+        {
+            "id": "https://orcid.org/my-orcid?orcid=0000-0002-1276-0707",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "Pôle National des Données de Biodiversité"
+            },
+            "email": "francis.clement@essec.edu",
+            "familyName": "CLEMENT",
+            "givenName": "Francis"
+        },
+        {
+            "type": "Role",
+            "schema:author": "https://orcid.org/my-orcid?orcid=0000-0002-1276-0707",
+            "roleName": "Chief Operating Officer",
+            "startDate": "2025-02-25"
+        }
+    ],
+    "codeRepository": "https://github.com/FCLMNHN/Cat.HarvesterX",
+    "dateCreated": "2026-01-30",
+    "dateModified": "2026-03-25",
+    "datePublished": "2025-06-24",
+    "description": "This project is a robust pipeline for automatic natural language processing (NLP) and terminology alignment.",
+    "downloadUrl": "https://github.com/FCL-DataIA/Cat.VocMapX",
+    "keywords": [
+        "Harvester",
+        "OAI-PMH",
+        "Huwise",
+        "Opendatasoft"
+    ],
+    "license": "https://spdx.org/licenses/MIT",
+    "name": "Cat.VocMapX",
+    "operatingSystem": [
+        "MacOS",
+        "Linux",
+        "Unix",
+        "Windows"
+    ],
+    "programmingLanguage": "Python",
+    "relatedLink": "https://www.pnfb.fr",
+    "releaseNotes": "Multi-format indexing: Native support for parsing complex vocabularies (.rdf, .owl, .nt, .nq, .xml, .sdf).
+5-step hybrid alignment strategy.
+Parallelisation and RAM optimisation: Multi-process processing optimised for macOS (spawn compatibility) and Windows/Linux.
+Dynamic batch size management based on available memory. Validation via Local LLM: Dual integration of Ollama (mistral:7b) for validating matches and resolving complex cases.
+Comprehensive analytical reports: Automated generation of Excel files containing cross-tabulation statistics and conditional formatting (scores, LLM verdicts).",
+    "version": "6.3",
+    "issueTracker": "https://github.com/FCL-DataIA/Cat.VocMapX/issues"
+}

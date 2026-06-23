@@ -13,32 +13,22 @@ Il permet de mapper une liste de mots-clés scientifiques uniques avec plusieurs
 
 ## Architecture de l'alignement (5 Étapes)
 La pipeline traite les mots-clés de manière séquentielle pour maximiser la précision tout en minimisant le coût de calcul : 
-[Mots-clés uniques]
-       │
-       ▼
-┌─────────────────────────────────┐
-│ Étape 1 : Exact Match            │ ──► (Index Maître + API PubChem)
-└─────────────────────────────────┘
-       │ (Si non trouvé)
-       ▼
-┌─────────────────────────────────┐
-│ Étape 2 : Fuzzy Match           │ ──► (TF-IDF N-grammes + RapidFuzz WRatio)
-└─────────────────────────────────┘
-       │ (Si Score < 98)
-       ▼
-┌─────────────────────────────────┐
-│ Étape 3 : Recherche Sémantique  │ ──► (Embeddings BGE-M3 + Index FAISS L2)
-└─────────────────────────────────┘
-       │ (Pour tous les matchs trouvés)
-       ▼
-┌─────────────────────────────────┐
-│ Étape 4 : Vérification LLM      │ ──► (Arbitrage binaire YES/NO par Mistral:7b)
-└─────────────────────────────────┘
-       │ (Pour les "NON TROUVÉ" restants)
-       ▼
-┌─────────────────────────────────┐
-│ Étape 5 : Arbitrage Non Trouvés │ ──► (Sélection LLM parmi le Top-10 FAISS)
-└─────────────────────────────────┘
+```mermaid
+flowchart TD
+
+    A[Mots-clés uniques d'entrée]
+
+    A --> B["Étape 1 : Exact Match<br/>(Index local exhaustif + API PubChem)"]
+
+    B -->|Si non trouvé| C["Étape 2 : Fuzzy Match<br/>(TF-IDF N-grammes + RapidFuzz WRatio)"]
+
+    C -->|Score < seuil| D["Étape 3 : Recherche Sémantique<br/>(Embeddings BGE-M3 + Index FAISS L2)"]
+
+    D -->|Pour tous les matchs candidats| E["Étape 4 : Vérification LLM<br/>(Validation binaire YES/NO par Mistral:7b)"]
+
+    E -->|Pour les NON TROUVÉ restants| F["Étape 5 : Arbitrage Alternatif<br/>(Sélection par le LLM parmi le Top-10 FAISS)"]
+```
+   
 
 1. Exact Match (Étape 1) : Correspondance stricte (case insensitive) avec l'index local ou via l'API REST de PubChem.
 2. Fuzzy Match (Étape 2) : Pré-filtrage par similarité cosinus sur n-grammes de caractères (TF-IDF), suivi d'un calcul de score flou via Rapidfuzz.fuzz.WRatio.

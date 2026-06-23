@@ -62,6 +62,7 @@ voc-mapx/
 ┃ Cat.VocMapX.py
 ┃ liste_mots_cles_uniques.csv      # Votre fichier d'entrée (Doit contenir une colonne 'keyword')
 ┗ Vocabulaires/                    # Placez ici vos fichiers de thésaurus (ex: BLH.rdf, envo.owl...)
+Le répertoire Vocabulaires est disponible à l'adresse : https://drive.google.com/file/d/1Pg4FrYU5805D9ofX5q2add0sxpWsBKgS/view?usp=sharing
 
 ## Utilisation
 Exécutez le script principal :

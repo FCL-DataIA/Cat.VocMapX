@@ -58,10 +58,19 @@ Dépendances clés : pandas, torch, sentence-transformers, faiss-cpu, rapidfuzz,
 
 3. Structure des dossiers requise
    Avant de lancer le script, assurez-vous d'avoir l'arborescence suivante
-voc-mapx/
-┃ Cat.VocMapX.py
-┃ liste_mots_cles_uniques.csv      # Votre fichier d'entrée (Doit contenir une colonne 'keyword')
-┗ Vocabulaires/                    # Placez ici vos fichiers de thésaurus (ex: BLH.rdf, envo.owl...)
+```mermaid
+flowchart TD
+
+    A["Cat.VocMapX"]
+
+    A --> B["Cat.VocMapX.py"]
+    A --> C["liste_mots_cles_uniques.csv<br/>(Fichier d'entrée obligatoire - colonne 'keyword')"]
+    A --> D["Vocabulaires"]
+
+    D --> E["Thésaurus RDF"]
+    D --> F["Thésaurus OWL"]
+    D --> G["Thésaurus NT"]
+```
 Le répertoire Vocabulaires est disponible à l'adresse : https://drive.google.com/file/d/1Pg4FrYU5805D9ofX5q2add0sxpWsBKgS/view?usp=sharing
 
 ## Utilisation
